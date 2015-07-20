@@ -18,6 +18,7 @@ Graph::Graph(bool* StatePointer,StateFunction* StateFunctionPointerFP, StateFunc
 	//Inicializa las variables auxiliares 
 	clear();
 }
+// Run the grafcet
 void Graph::run(){
 	int x;
 	int y;
@@ -83,31 +84,34 @@ void Graph::run(){
 		*(_StatePointer+x)=*(StateAuxPointer+x);
 	}
 }
-
+// Clear all the states 
 void Graph::clear(){
 	for(int x=0;x<_StateLength;x++){
 		clearState(x);
 	}		
 }
+// Set one state
 void Graph::setState(int number){
 	if(number<_StateLength){
 		*(StateAuxPointer+number)=true;
 		*(_StatePointer+number)=true;		
 	}
 }
+// Clear one state
 void Graph::clearState(int number){
 	if(number<_StateLength){
 		*(StateAuxPointer+number)=false;
 		*(_StatePointer+number)=false;		
 	}		
 }
+// return if a state is enabled
 bool Graph::getState(int number){	
 	if(number<_StateLength){
 		return *(_StatePointer+number);
 	}
 	return false;
 }
-
+//enable manual mode and link transition function
 void Graph::manual(TransiFunction* ManTransPointer, bool active){
 		_ManTransPointer = ManTransPointer;
 		_ManActive = active;	
